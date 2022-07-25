@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Spirit.gd" type="Script" id=1]
+[ext_resource path="res://Assets/pngwing.com.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.197458
+height = 0.159813
+
+[sub_resource type="OccluderShapeSphere" id=2]
+
+[node name="Spirit" type="KinematicBody"]
+collision_layer = 3
+collision_mask = 2
+script = ExtResource( 1 )
+state_cover = Color( 0.352941, 0.996078, 0.0941176, 1 )
+state_hesitate = Color( 0.278431, 0.917647, 0.933333, 1 )
+state_flee = Color( 0.913725, 0.105882, 0.960784, 1 )
+state_attack = Color( 0.929412, 0.6, 0.176471, 1 )
+state_else = Color( 1, 0, 0, 1 )
+
+[node name="Sprite" type="Sprite3D" parent="."]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
+shaded = true
+alpha_cut = 2
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.00610867, 0.999981, 0, -0.999981, -0.00610867, -0.0392809, 0.0873528, -0.00347692 )
+shape = SubResource( 1 )
+
+[node name="Occluder" type="Occluder" parent="."]
+shape = SubResource( 2 )

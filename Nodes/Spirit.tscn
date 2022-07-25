@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Spirit.gd" type="Script" id=1]
+[ext_resource path="res://Assets/pngwing.com.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 119.842
+height = 67.205
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -1.85291, -18.184, 4.15387, -17.5166, 6.9904, -13.3452, 8.4921, -6.67104, 6.82355, -1.16482, 3.65331, 3.67397, 1.31734, 5.00881, 5.155, 3.67397, 6.65669, 2.00542, 9.49323, 2.67284, 10.9949, 3.34026, 18.6703, 2.33913, 18.8371, 3.84083, 17.6691, 4.00768, 18.0028, 6.84422, 16.8349, 10.8487, 15.5, 13.6853, 13.164, 15.0201, 9.99379, 16.355, 7.99153, 16.5218, 8.82581, 14.8533, 12.1629, 12.3504, 13.9983, 7.84535, 13.8315, 4.6751, 10.3275, 5.34253, 10.1606, 6.00995, 8.4921, 6.51051, 6.48984, 6.67737, 5.65556, 6.00995, 0.649918, 6.67737, 0.649918, 8.17906, -1.01863, 8.17906, -2.52032, 7.51164, -4.18888, 7.6785, -4.35574, 6.51051, -5.69057, 6.1768, -5.85743, 4.6751, -5.02316, 3.00655, -12.1979, 4.6751, -8.02654, 0.336876, -13.0322, 1.17115, -10.0288, -1.66538, -14.5339, -0.664253, -10.1957, -4.00135, -9.02767, -8.00587, -8.52711, -12.0104, -6.6917, -16.0149, -3.18774, -17.6835 )
+
+[node name="Spirit" type="KinematicBody2D"]
+collision_layer = 3
+collision_mask = 2
+script = ExtResource( 1 )
+state_cover = Color( 0.352941, 0.996078, 0.0941176, 1 )
+state_hesitate = Color( 0.278431, 0.917647, 0.933333, 1 )
+state_flee = Color( 0.913725, 0.105882, 0.960784, 1 )
+state_attack = Color( 0.929412, 0.6, 0.176471, 1 )
+state_else = Color( 1, 0, 0, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -1.25989 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.10242, -3.93723 )
+scale = Vector2( 0.1, 0.1 )
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2( 20.1895, -6.17364 )
+occluder = SubResource( 2 )

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Window.png" type="Texture" id=1]
+[ext_resource path="res://Assets/CandleLight.png" type="Texture" id=2]
+[ext_resource path="res://Shaders/BlurWindow.tres" type="Material" id=3]
+
+[node name="Window" type="Light2D"]
+material = ExtResource( 3 )
+position = Vector2( 3.05176e-05, 2.00003 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 1 )
+color = Color( 0.639216, 0.988235, 0.980392, 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 2 )
+texture_scale = 21.11
+color = Color( 1, 1, 1, 0.34902 )

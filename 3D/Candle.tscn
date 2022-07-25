@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/C300-1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/C300-2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/C300-3.png" type="Texture" id=4]
+[ext_resource path="res://Candle.gd" type="Script" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Candle" type="Spatial"]
+script = ExtResource( 5 )
+lit = false
+flicker_factor = 3.8
+
+[node name="Light" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00920777, 0.0931934, -0.266276 )
+light_color = Color( 0.988235, 0.737255, 0.588235, 1 )
+light_energy = 3.415
+shadow_enabled = true
+omni_range = 5.268
+omni_attenuation = 3.4822
+
+[node name="AnimatedSprite" type="AnimatedSprite3D" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, -0.244741 )
+frames = SubResource( 1 )
+frame = 2
+playing = true
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.68302 )
+light_color = Color( 0.984314, 0.760784, 0.545098, 1 )
+light_energy = 0.08
+spot_range = 2.4345
+spot_angle = 68.1556
+spot_angle_attenuation = 3.03143
+
+[node name="SpotLight2" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.68302 )
+light_color = Color( 0.984314, 0.760784, 0.545098, 1 )
+light_energy = 0.08
+light_negative = true
+spot_range = 2.4345
+spot_angle = 26.27
+spot_angle_attenuation = 5.27801
+
+[node name="LightPoint" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0922361, -0.250499 )
+visible = false
+
+[node name="RayCast" type="RayCast" parent="LightPoint"]
+visible = false
+enabled = true
+debug_shape_thickness = 5

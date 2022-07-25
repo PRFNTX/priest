@@ -1,0 +1,164 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Room.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Disneyland-Haunted-Mansion-1831081.jpg" type="Texture" id=2]
+[ext_resource path="res://3D/DarkWorld.tres" type="Environment" id=3]
+[ext_resource path="res://3D/Platform.tscn" type="PackedScene" id=4]
+[ext_resource path="res://3D/Candle.tscn" type="PackedScene" id=5]
+[ext_resource path="res://3D/flat_window.tscn" type="PackedScene" id=6]
+[ext_resource path="res://3D/DarkWorld.tscn" type="PackedScene" id=7]
+[ext_resource path="res://3D/Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Utils/DepthAlign.tscn" type="PackedScene" id=11]
+[ext_resource path="res://3D/Spirit.tscn" type="PackedScene" id=12]
+
+[node name="Room" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="WorldEnvironment" parent="." instance=ExtResource( 7 )]
+
+[node name="Room" type="Room" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="Back" parent="Room" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 1 )
+
+[node name="Sprite" type="Sprite3D" parent="Room/Back"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1 )
+use_in_baked_light = true
+shaded = true
+alpha_cut = 2
+texture = ExtResource( 2 )
+
+[node name="Portal" type="Portal" parent="Room/Back"]
+transform = Transform( 0.999999, 0.000105412, 0.00110567, -0.00010376, 0.999999, -0.00147961, -0.00110583, 0.00147949, 0.999998, 2.80891, 0.88388, -1.29348 )
+linked_room = NodePath("../../../Room2")
+
+[node name="Main" parent="Room" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 1 )
+
+[node name="Spirit" parent="Room/Main" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.24004, 1.02627, 0 )
+axis_lock_motion_x = true
+axis_lock_motion_y = true
+move_lock_x = true
+move_lock_y = true
+
+[node name="Player" parent="Room/Main" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.882413, 0, 0 )
+axis_lock_motion_x = false
+axis_lock_motion_y = false
+axis_lock_motion_z = true
+move_lock_x = false
+move_lock_y = false
+move_lock_z = true
+
+[node name="Camera" type="Camera" parent="Room/Main/Player"]
+transform = Transform( 1, 0, 0, 0, 0.966075, 0.258263, 0, -0.258263, 0.966075, -0.0109181, 0.973765, 1.72145 )
+environment = ExtResource( 3 )
+projection = 1
+current = true
+size = 3.5
+
+[node name="Platform" parent="Room/Main" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.168626, -0.490871, 0 )
+
+[node name="Candle" parent="Room/Main" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88596, 0.355783, 0.00639725 )
+lit = true
+flicker_rate = 0.657769
+n2 = 0.829223
+
+[node name="Candle2" parent="Room/Main" instance=ExtResource( 5 )]
+transform = Transform( -0.999989, 0, -0.00464262, 0, 1, 0, 0.00464262, 0, -0.999989, 2.96394, 0.355783, 0.00639713 )
+lit = true
+base_scale = 0.94
+flicker_rate = 0.657773
+n2 = 0.24507
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Room"]
+transform = Transform( 0.93886, -4.19703e-08, -0.344299, 0.084092, 0.969715, 0.229308, 0.333872, -0.244241, 0.910426, -3.3568, -0.15741, 6.20632 )
+light_color = Color( 0.6, 0.862745, 0.882353, 1 )
+shadow_enabled = true
+directional_shadow_mode = 1
+
+[node name="SpotLight" type="SpotLight" parent="Room"]
+transform = Transform( 0.93886, -4.19703e-08, -0.344299, 0.084092, 0.969715, 0.229308, 0.333872, -0.244241, 0.910426, -2.68286, -0.28286, 3.20632 )
+visible = false
+light_color = Color( 0.447059, 0.494118, 1, 1 )
+shadow_enabled = true
+
+[node name="Front" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 4 )
+depth = 4
+
+[node name="flat_window" parent="Front" instance=ExtResource( 6 )]
+transform = Transform( 0.00453773, 0, -1.99999, 0, 2, 0, 1.99999, 0, 0.00453773, 1, 1, 0 )
+
+[node name="flat_window2" parent="Front" instance=ExtResource( 6 )]
+transform = Transform( 0.00453773, 0, -1.99999, 0, 2, 0, 1.99999, 0, 0.00453773, 7, 1, 0 )
+
+[node name="Room2" type="Room" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8538, -9.40045 )
+visible = false
+
+[node name="Back" parent="Room2" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 1 )
+
+[node name="Sprite" type="Sprite3D" parent="Room2/Back"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1 )
+use_in_baked_light = true
+shaded = true
+alpha_cut = 2
+texture = ExtResource( 2 )
+
+[node name="Portal" type="Portal" parent="Room2/Back"]
+transform = Transform( 0.999999, 0.000105412, 0.00110567, -0.00010376, 0.999999, -0.00147961, -0.00110583, 0.00147949, 0.999998, 2.80891, 0.88388, 3.9824 )
+linked_room = NodePath("../../../Room")
+
+[node name="Main" parent="Room2" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 1 )
+
+[node name="Spirit" parent="Room2/Main" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.24004, 1.02627, 0 )
+axis_lock_motion_x = true
+axis_lock_motion_y = true
+move_lock_x = true
+move_lock_y = true
+
+[node name="Platform" parent="Room2/Main" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.168626, -0.490871, 0 )
+
+[node name="Candle" parent="Room2/Main" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88596, 0.355783, 0.00639725 )
+lit = true
+flicker_rate = 0.745029
+n2 = 0.827499
+
+[node name="Candle2" parent="Room2/Main" instance=ExtResource( 5 )]
+transform = Transform( -0.999989, 0, -0.00464262, 0, 1, 0, 0.00464262, 0, -0.999989, 2.96394, 0.355783, 0.00639713 )
+lit = true
+base_scale = 0.94
+flicker_rate = 0.745031
+n2 = 0.400383
+
+[node name="Front" parent="Room2" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1, 5 )
+depth = 4
+
+[node name="flat_window" parent="Room2/Front" instance=ExtResource( 6 )]
+transform = Transform( 0.00453773, 0, -1.99999, 0, 2, 0, 1.99999, 0, 0.00453773, 1, 1, 0 )
+
+[node name="flat_window2" parent="Room2/Front" instance=ExtResource( 6 )]
+transform = Transform( 0.00453773, 0, -1.99999, 0, 2, 0, 1.99999, 0, 0.00453773, 7, 1, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Room2"]
+transform = Transform( 0.93886, -4.19703e-08, -0.344299, 0.084092, 0.969715, 0.229308, 0.333872, -0.244241, 0.910426, -3.3568, -0.15741, 6.20632 )
+light_color = Color( 0.6, 0.862745, 0.882353, 1 )
+shadow_enabled = true
+directional_shadow_mode = 1
+
+[node name="SpotLight" type="SpotLight" parent="Room2"]
+transform = Transform( 0.93886, -4.19703e-08, -0.344299, 0.084092, 0.969715, 0.229308, 0.333872, -0.244241, 0.910426, -2.68286, -0.28286, 3.20632 )
+visible = false
+light_color = Color( 0.447059, 0.494118, 1, 1 )
+shadow_enabled = true

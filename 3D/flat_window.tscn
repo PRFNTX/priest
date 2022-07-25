@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/3d/flat_window.glb" type="PackedScene" id=1]
+
+[node name="flat_window" instance=ExtResource( 1 )]
+transform = Transform( -0.999997, 0, -0.00226887, 0, 1, 0, 0.00226887, 0, -0.999997, 0, 0, 0 )

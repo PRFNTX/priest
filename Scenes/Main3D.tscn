@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Room.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Disneyland-Haunted-Mansion-1831081.jpg" type="Texture" id=2]
+[ext_resource path="res://Assets/Window.png" type="Texture" id=3]
+[ext_resource path="res://Nodes/Spirit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Nodes/Character.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Nodes/Decorations/Lights/Window.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Terrain/Platform.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Nodes/Cabinet.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Nodes/Candle.tscn" type="PackedScene" id=9]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( 496.582, 510.453, 514.26, 509.746, 512.846, 523.888, 498.703, 524.595 )
+
+[node name="Room" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 524.42, 305.234 )
+scale = Vector2( 1.33484, 1.38399 )
+texture = ExtResource( 2 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0, 0, 0, 1 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+self_modulate = Color( 0, 0, 0, 0.776471 )
+position = Vector2( 642.627, 354.996 )
+scale = Vector2( 0.155212, 0.143902 )
+texture = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Character" parent="." instance=ExtResource( 5 )]
+position = Vector2( 514, 418 )
+
+[node name="Platform" parent="." instance=ExtResource( 7 )]
+position = Vector2( 528, 542 )
+
+[node name="Platform2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 42, 355.749 )
+rotation = 0.598514
+
+[node name="Spirit" parent="." instance=ExtResource( 4 )]
+position = Vector2( 287, 274 )
+
+[node name="Spirit2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 514, 232 )
+
+[node name="Spirit3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 640, 249 )
+
+[node name="Spirit4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 378, 247 )
+
+[node name="Cabinet" parent="." groups=["possessable"] instance=ExtResource( 8 )]
+position = Vector2( 830, 390 )
+scale = Vector2( 2, 2 )
+state_blessed = Color( 0.933333, 0.905882, 0.254902, 1 )
+state_possessed = Color( 0.560784, 0.113725, 0.65098, 1 )
+state_normal = Color( 255, 255, 255, 1 )
+
+[node name="Window2" parent="." instance=ExtResource( 6 )]
+modulate = Color( 0.992157, 1, 1, 1 )
+position = Vector2( 346.365, 253.847 )
+scale = Vector2( 0.04, 0.04 )
+texture_scale = 9.59
+color = Color( 0.639216, 0.988235, 0.980392, 0.223529 )
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.150305, 0.14337, 1.96428 )
+
+[node name="Candle" parent="." instance=ExtResource( 9 )]
+position = Vector2( 756.498, 259.197 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2( -69.695, -332.443 )
+occluder = SubResource( 1 )

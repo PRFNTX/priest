@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Posessable.gd" type="Script" id=1]
+
+[node name="Possessable" type="Node2D"]
+script = ExtResource( 1 )
+state_blessed = Color( 0.956863, 0.945098, 0.14902, 1 )
+state_possessed = Color( 0.717647, 0.0352941, 0.627451, 1 )
+state_normal = Color( 1, 1, 1, 1 )
