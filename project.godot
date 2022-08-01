@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://3D/Object3.gd"
 }, {
+"base": "GameObject",
+"class": "Possessable",
+"language": "GDScript",
+"path": "res://Posessable.gd"
+}, {
 "base": "GameObject3",
 "class": "Possessable3",
 "language": "GDScript",
@@ -27,6 +32,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "DepthAlign": "",
 "GameObject": "",
+"Possessable": "",
 "Possessable3": ""
 }
 

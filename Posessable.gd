@@ -1,5 +1,5 @@
 extends GameObject
-class_name Possessable3
+class_name Possessable
 
 export (Color) var state_possessed = Color(255,255,255)
 export (Color) var state_normal = Color(255,255,255)

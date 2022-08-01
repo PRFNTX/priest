@@ -24,4 +24,5 @@ color = Color( 0.996078, 0.894118, 0.682353, 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
